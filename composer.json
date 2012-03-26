@@ -1,0 +1,15 @@
+{
+    "name": "rstuven/php-notrace",
+    "authors": [
+        {
+            "name": "Ricardo Stuven",
+            "email": "rstuven@gmail.com"
+        }
+    ],
+    "require": {
+        "maximebf/events": ">=0.1.0",
+        "videlalvaro/php-amqplib": "*",
+        "rstuven/pecs": "*",
+        "mockery/mockery": ">=0.7.2"
+    }
+}
