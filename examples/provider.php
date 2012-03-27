@@ -1,6 +1,5 @@
 <?php
 require 'vendor/.composer/autoload.php';
-require 'lib/bcmath.php';
 require 'lib/probe.php';
 require 'lib/provider.php';
 

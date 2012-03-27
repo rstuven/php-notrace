@@ -1,5 +1,7 @@
 <?php
 
+include('bcmath.inc');
+
 //include('provider_amqp101.inc');
 include('provider_amqplib.inc');
 
