@@ -112,7 +112,7 @@ describe('Probe', function() {
             $s = $p->sample('c1');
             expect($s[0]->payload->args)->not_to_be_null();
             expect($s[0]->payload->args)->to_be(Array(123));
-            expect($s[0]->consumerIds)->to_be(Array('c1'));
+            expect($s[0]->consumerId)->to_be('c1');
         });
 /*
     it('should return multiple samples on async argument', function(done) {

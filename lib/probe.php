@@ -38,8 +38,6 @@ class Probe extends Events\GenericEmitter {
             }, $this->types);
         }
 
-        $this->consumerIds = Array();
-
         $this->hits = 0;
     }
 
@@ -89,10 +87,9 @@ class Probe extends Events\GenericEmitter {
                 'hits' => $this->hits,
                 'args' => $args
             );
-            $consumerIds = isset($consumerId) ? Array($consumerId) : $this->consumerIds;
             $sample = Array(
                 'payload' => $payload,
-                'consumerIds' => $consumerIds
+                'consumerId' => $consumerId
             );
             $this->notify('sample', $sample);
             $samples[] = (object) $sample;
@@ -101,21 +98,13 @@ class Probe extends Events\GenericEmitter {
     }
 
     function enableForConsumer($consumerId, $interval, $probeKey) {
-        if ($this->instant) {
-            if (!in_array($consumerId, $this->consumerIds)) {
-                $this->consumerIds[] = $consumerId;
-            }
-        }
-        else {
+        if (!$this->instant) {
         }
         $this->enabled = true;
         $this->disableDelay = microtime(); //TODO: disable!
     }
 
     function stop($consumerId) {
-        $index = array_search($consumerId, $this->consumerIds);
-        if ($index !== -1)
-            array_splice($this->consumerIds, $index, 1);
     }
 
 }

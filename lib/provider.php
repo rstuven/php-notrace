@@ -87,8 +87,11 @@ class Provider extends Events\GenericEmitter {
             $body = bson_encode($body);
             $probeKey = "{$_this->config['name']}.{$_this->module}.{$probe->name}";
             try {
-                foreach ($sample['consumerIds'] as $consumerId) {
-                    publishSample($_this, $probeKey.'.'.$consumerId, $body);
+                if ($probe->instant) {
+                    publishSample($_this, $probeKey.'.all', $body);
+                }
+                else if (isset($sample['consumerId'])) {
+                    publishSample($_this, $probeKey.'.'.$sample['consumerId'], $body);
                 }
             } catch (Exception $e) {
                 $_this->disconnect();
