@@ -5,6 +5,7 @@ use PhpAmqpLib\Message\AMQPMessage;
 //define('AMQP_DEBUG', true);
 
 function publishSample($_this, $routingKey, $body) {
+    //echo "\npublish {$routingKey}";
     $msg = new AMQPMessage($body);
     $_this->channel->basic_publish($msg, $_this->samples, $routingKey);
 }

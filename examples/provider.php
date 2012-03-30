@@ -8,7 +8,7 @@ $provider = new Provider(Array(
     'probes' => Array(
         'random' => Array(
             'types' => Array('number', 'number'),
-            'instant' => true,
+            'instant' => false,
             'sampleThreshold' => 0
         )
     )
@@ -20,6 +20,7 @@ $dist = Array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 $length = count($dist);
 $dist = array_map(function($i) use($length) { $x = $i / $length; return exp(-(pi()*$x*$x)); }, $dist);
 
+declare(ticks=100);
 while (true) {
 
     $arg0 = rand(0, 1000000) / 1000;

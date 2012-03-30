@@ -1,5 +1,9 @@
 <?php
 
+require_once 'vendor/rstuven/timers/Timers.class.php';
+
+define('PROBE_DISABLE_DELAY',  6000); // time to wait before disabling probes.
+
 class Probe extends Events\GenericEmitter {
 
     function __construct($config) {
@@ -7,6 +11,11 @@ class Probe extends Events\GenericEmitter {
         parent::__construct();
 
         $this->id = uniqid();
+
+        // multiple consumers support
+        $this->consumerTimers = Array(); // for interval sampling probes
+
+        $this->disableDelay = null;
 
         if (gettype($config) === 'string')
             $config = Array(
@@ -98,14 +107,46 @@ class Probe extends Events\GenericEmitter {
     }
 
     function enableForConsumer($consumerId, $interval, $probeKey) {
-        if (!$this->instant) {
-        }
+        $_this = $this;
+
         $this->enabled = true;
-        $this->disableDelay = microtime(); //TODO: disable!
+
+        if (!$this->instant) {
+
+            // register consumer
+            $newConsumerId = !isset($this->consumerTimers[$consumerId]);
+            if ($interval > 0 && $newConsumerId){
+                $this->consumerTimers[$consumerId] = setInterval(function() use ($_this, $consumerId) {
+                    $_this->sample($consumerId);
+                }, $interval);
+            }
+
+            // enable with delayed disabling
+            if (!empty($this->disableDelay)) {
+                clearTimeout($this->disableDelay);
+            }
+            $this->disableDelay = setTimeout(function() use($_this) {
+                //echo "\ndisabled " . $_this->name;
+                $_this->enabled = false;
+                foreach ($_this->consumerTimers as $consumerId => $timer) {
+                    clearInterval($timer);
+                }
+                $_this->consumerTimers = Array();
+            }, PROBE_DISABLE_DELAY);
+        }
+
     }
 
     function stop($consumerId) {
-        $this->enabled = false;
+        if ($this->instant) {
+            $_this->enabled = false;
+        }
+        else {
+            if (isset($this->consumerTimers[$consumerId])) {
+                clearInterval($this->consumerTimers[$consumerId]);
+                unset($this->consumerTimers[$consumerId]);
+            }
+        }
     }
 
 }

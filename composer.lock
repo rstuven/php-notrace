@@ -1,5 +1,5 @@
 {
-    "hash": "02984fcf52ff55ca65d34e572ac6dd23",
+    "hash": "dfc5dec9b66aed825445e18c44e15ecf",
     "packages": [
         {
             "package": "maximebf/events",
@@ -20,6 +20,11 @@
             "package": "rstuven/pecs",
             "version": "dev-master",
             "source-reference": "baff32fa67245ac57000fb179c7552f171390f53"
+        },
+        {
+            "package": "rstuven/timers",
+            "version": "dev-master",
+            "source-reference": "29c50e9205ee7626182f7316dae8807fa1758ca7"
         },
         {
             "package": "videlalvaro/php-amqplib",
