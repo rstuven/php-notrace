@@ -267,6 +267,21 @@ describe('Probe', function() {
             })->to_throw();
         });
 
+        it('should emit a sample', function() {
+            $p = new Probe('p', 'number');
+            $p->enabled = true;
+            $p->instant = true;
+            $p->sampleThreshold = 0;
+            $count = 0;
+            $p->on('sample', function($sample) use (&$count) {
+                expect($sample->payload->args)->to_be(Array(1));
+                $count++;
+            });
+            $p->increment(1);
+            expect($count)->to_be(1);
+            expect(1)->to_be(1);
+        });
+
 
     });
 

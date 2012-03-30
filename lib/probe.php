@@ -57,7 +57,7 @@ class Probe extends Events\GenericEmitter {
         $this->args[$index] = $arg + $offset;
         $this->hits++;
         if ($this->enabled && $this->instant)
-            $this->sample(null, $this->args);
+            $this->sample(null, Array($this->args));
     }
 
     /**
