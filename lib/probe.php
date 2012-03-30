@@ -105,6 +105,7 @@ class Probe extends Events\GenericEmitter {
     }
 
     function stop($consumerId) {
+        $this->enabled = false;
     }
 
 }
