@@ -1,6 +1,6 @@
 <?php
 
-include('bcmath.inc');
+require_once 'vendor/rstuven/bcmath/bcmath.php';
 
 //include('provider_amqp101.inc');
 include('provider_amqplib.inc');
@@ -145,6 +145,7 @@ class Provider extends Events\GenericEmitter {
 
     private function doRequest($probe, $message) {
         $probeKey = "{$this->config['name']}.{$this->module}.{$probe->name}";
+        //echo "\n" . $message['request'] . ' ' . $probeKey;
         switch ($message['request']) {
         case 'sample':
             $probe->sample($message['consumerId']);

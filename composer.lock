@@ -1,0 +1,31 @@
+{
+    "hash": "02984fcf52ff55ca65d34e572ac6dd23",
+    "packages": [
+        {
+            "package": "maximebf/events",
+            "version": "dev-master",
+            "source-reference": "a5d21f52b760a6c6470d9ed522003ad045dc4fad"
+        },
+        {
+            "package": "mockery/mockery",
+            "version": "dev-master",
+            "source-reference": "2c5e3244b72d268d8c70935fcceb39b3d84d57db"
+        },
+        {
+            "package": "rstuven/bcmath",
+            "version": "dev-master",
+            "source-reference": "5d704d45922c7fe88e35f17d00276a7a9ba3a10b"
+        },
+        {
+            "package": "rstuven/pecs",
+            "version": "dev-master",
+            "source-reference": "baff32fa67245ac57000fb179c7552f171390f53"
+        },
+        {
+            "package": "videlalvaro/php-amqplib",
+            "version": "dev-master",
+            "source-reference": "c6d889bb709dbd657611f747c6e97630fa2fedd1"
+        }
+    ],
+    "aliases": []
+}

@@ -1,5 +1,6 @@
 {
     "name": "rstuven/php-notrace",
+    "version": "0.0.1",
     "authors": [
         {
             "name": "Ricardo Stuven",
@@ -9,6 +10,7 @@
     "require": {
         "maximebf/events": ">=0.1.0",
         "videlalvaro/php-amqplib": "*",
+        "rstuven/bcmath": "*",
         "rstuven/pecs": "*",
         "mockery/mockery": ">=0.7.2"
     }
