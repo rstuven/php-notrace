@@ -23,7 +23,7 @@ class Provider extends Events\GenericEmitter {
         $this->id = uniqid();
         $this->config = $config;
 
-        $this->probes = (object) Array();
+        $this->probes = new stdClass();
         if (isset($config['probes'])) {
             foreach ($config['probes'] as $name => $args) {
                 if (gettype($args) !== 'array')

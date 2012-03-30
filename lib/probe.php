@@ -139,7 +139,7 @@ class Probe extends Events\GenericEmitter {
 
     function stop($consumerId) {
         if ($this->instant) {
-            $_this->enabled = false;
+            $this->enabled = false;
         }
         else {
             if (isset($this->consumerTimers[$consumerId])) {
