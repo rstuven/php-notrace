@@ -17,8 +17,8 @@ function connect($_this) {
     $password = 'guest';
     $_this->connection = new AMQPConnection($host, $port, $user, $password);
     $_this->channel = $_this->connection->channel();
-    $_this->samples = declareExchange($_this, 'notrace-samples', 'topic', false, false, false);
-    $_this->requests = declareExchange($_this, 'notrace-requests', 'fanout', false, false, false);
+    $_this->samples = declareExchange($_this, 'notrace-samples', 'topic', false, false, true);
+    $_this->requests = declareExchange($_this, 'notrace-requests', 'fanout', false, false, true);
     $_this->requestsQueue = declareQueue($_this, '', false, false, true, true);
 
     $_this->channel->queue_bind($_this->requestsQueue, $_this->requests, '');
